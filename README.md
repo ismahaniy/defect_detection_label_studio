@@ -92,7 +92,7 @@ conda activate defect_detection_env
 Install dependencies:
 
 ```bash
-pip install label-studio label-studio-ml ultralytics requests pyyaml
+pip install label-studio ultralytics requests pyyaml
 ```
 
 ---
@@ -106,22 +106,20 @@ label-studio start
 Open browser:
 
 ```
-http://127.0.0.1:8080
+http://127.0.0.1:8080 / http://localhost:8080
 ```
 
 ### Create a Project
-1. Create a new project
-2. Upload images
-3. Configure bounding box labeling
-4. Start annotating / correcting predictions
-
+1. Sign up / Log in
+2. Create a new project
+   
 ---
 
 ## Step 3 — Get Label Studio API Key
-
+Ensure to enable Legacy Tokens to get API Key(Label Studio -> Organization -> API Key Settings)
 1. Click **Avatar (top-right)**
 2. Open **Account & Settings**
-3. Copy **API Key**
+3. Copy **API Key/Legacy Token**
 
 Paste the API key into:
 - `ls_export/export_yolo.py`
@@ -130,9 +128,27 @@ Paste the API key into:
 ---
 
 ## Step 4 — Start Label Studio ML Backend
-
+ Open new terminal
+ ```bash
+cd label-studio-ml-backend/
+pip install -e .
+```
 ```bash
-label-studio-ml start my_ml_backend
+pip install -r my_ml_backend
+label-studio-ml start .\my_ml_backend
+```
+1. You should be able to connect to it in Label Studio project Settings > Machine Learning > Add Model and provide with the following URL: http://localhost:9090
+2. Labeling Interface and copy this code 
+```
+<View>
+  <Image name="image" value="$image"/>
+  <RectangleLabels name="label" toName="image" model_score_threshold="0.25">
+    <Label value="dentado" background="#FFA39E"/>
+    <Label value="concave" background="#D4380D"/>
+    <Label value="perforation" background="#FFC069"/>
+  </RectangleLabels>
+</View>
+
 ```
 
 Ensure your `model.py` loads only the deployed model:
@@ -141,6 +157,9 @@ Ensure your `model.py` loads only the deployed model:
 self.model = YOLO("models/deployed/best.pt")
 ```
 
+1. Upload images
+2. Configure bounding box labeling
+3. Start annotating / correcting predictions
 ---
 
 ## Step 5 — Initial Model Setup
