@@ -19,26 +19,28 @@ This system is designed for defect detection tasks and supports human-in-the-loo
 ## Requirements
 
 - Python 3.9+
-- Conda environment
+- venv/Conda 
 - YOLOv8 (Ultralytics)
 
 ---
 
-## Step 1 — Create Environment
-
-```bash
-conda create -n detection_env python=3.9
-conda activate detection_env
-```
+## Step 1 — Install & Create Environment
 
 Install dependencies:
 
 ```bash
 git clone https://github.com/ismahaniy/defect_detection_label_studio.git
+```
+Create Environment
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+```bash
 cd defect_detection_label_studio
 pip install label-studio
 ```
-
 ---
 
 ## Step 2 — Start Label Studio
@@ -66,13 +68,13 @@ Ensure to enable Legacy Tokens to get API Key(Label Studio -> Organization -> AP
 3. Copy **API Key/Legacy Token**
 
 Paste the API key into:
-- `ls_export/export_yolo.py`
-- `ls_export/rebuild_yolo_dataset.py`
+- `project_root/ls_export/export_yolo.py`
+- `project_root/ls_export/rebuild_yolo_dataset.py`
 
 ---
 
 ## Step 4 — Start Label Studio ML Backend
- Open new terminal
+ Open new terminal(ensure your venv active)
  ```bash
 cd defect_detection_label_studio/label-studio-ml-backend
 pip install -r my_ml_backend/requirements-base.txt
@@ -80,7 +82,7 @@ pip install -r my_ml_backend/requirements.txt
 label-studio-ml start .\my_ml_backend
 ```
 
-1. You should be able to connect to it in Label Studio project Settings > Machine Learning > Add Model and provide with the following URL: http://localhost:9090
+1. You should be able to connect to it in Label Studio project Settings > Model > Add Model and provide with the following URL: http://localhost:9090
 2. Labeling Interface and copy this code 
 ```
 <View>
@@ -99,7 +101,8 @@ Start Label Image
 3. Start annotating / correcting predictions
 ---
 ## Step 4 — Export verified data and Evaluate
-New terminal
+
+New terminal (venv active)
 Manual Export
 1. Click export button
 2. Choose YOLO and images
@@ -133,5 +136,5 @@ python pipeline/run_pipeline.py
 
 ---
 
-I am not suggest to proceed fine-tuning because it will take long time without GPU also the trainning data not include in the repository.
+I do not recommend proceeding with fine-tuning because it will take a long time without the GPU, and the training data is not included in the repository.
 
