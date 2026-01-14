@@ -99,6 +99,7 @@ Start Label Image
 3. Start annotating / correcting predictions
 ---
 ## Step 4 — Export verified data and Evaluate
+New terminal
 Manual Export
 1. Click export button
 2. Choose YOLO and images
