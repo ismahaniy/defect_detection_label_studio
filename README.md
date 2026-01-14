@@ -79,7 +79,6 @@ Paste the API key into:
 cd defect_detection_label_studio/label-studio-ml-backend
 pip install -r my_ml_backend/requirements-base.txt
 pip install -r my_ml_backend/requirements.txt
-label-studio-ml start .\my_ml_backend
 ```
 Warnings: will get an error when install requirements-base.txt but can ignore it and proceed
 
@@ -96,6 +95,11 @@ Warnings: will get an error when install requirements-base.txt but can ignore it
 </View>
 
 ```
+```bash
+label-studio-ml start .\my_ml_backend
+```
+- Ensure Settings > Model is connected
+
 Start Label Image
 1. Upload images
 2. Configure bounding box labeling
