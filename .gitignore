@@ -1,0 +1,24 @@
+# --- IGNORE THE HEAVY TRASH ---
+# Ignore the virtual environment (where the 5GB likely comes from)
+venv/
+env/
+.env
+defect_detection_env/
+
+# Ignore massive datasets
+datasets/
+images/
+labels/
+
+# Ignore system junk
+__pycache__/
+*.pyc
+
+# --- ALLOW YOUR MODEL ---
+# Ignore all model files by default...
+*.pt
+*.pth
+
+# ...BUT explicitly save YOUR specific model
+!best.pt
+!label-studio-ml-backend/my_ml_backend/best.pt
