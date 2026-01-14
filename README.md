@@ -85,14 +85,16 @@ project_root/
 ## Step 1 — Create Environment
 
 ```bash
-conda create -n defect_detection_env python=3.9
-conda activate defect_detection_env
+conda create -n detection_env python=3.9
+conda activate detection_env
 ```
 
 Install dependencies:
 
 ```bash
-pip install label-studio ultralytics requests pyyaml
+git clone https://github.com/ismahaniy/defect_detection_label_studio.git
+cd defect_detection_label_studio/label-studio-ml-backend
+pip install -e .
 ```
 
 ---
@@ -130,13 +132,11 @@ Paste the API key into:
 ## Step 4 — Start Label Studio ML Backend
  Open new terminal
  ```bash
-cd label-studio-ml-backend/
-pip install -e .
-```
-```bash
+cd defect_detection_label_studio/label-studio-ml-backend
 pip install -r my_ml_backend
 label-studio-ml start .\my_ml_backend
 ```
+
 1. You should be able to connect to it in Label Studio project Settings > Machine Learning > Add Model and provide with the following URL: http://localhost:9090
 2. Labeling Interface and copy this code 
 ```
