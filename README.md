@@ -93,6 +93,7 @@ label-studio-ml start .\my_ml_backend
 </View>
 
 ```
+Start Label Image
 1. Upload images
 2. Configure bounding box labeling
 3. Start annotating / correcting predictions
