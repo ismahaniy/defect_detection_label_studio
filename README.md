@@ -81,6 +81,7 @@ pip install -r my_ml_backend/requirements-base.txt
 pip install -r my_ml_backend/requirements.txt
 label-studio-ml start .\my_ml_backend
 ```
+Warnings: will get an error when install requirements-base.txt but can ignore it and proceed
 
 1. You should be able to connect to it in Label Studio project Settings > Model > Add Model and provide with the following URL: http://localhost:9090
 2. Labeling Interface and copy this code 
@@ -103,6 +104,7 @@ Start Label Image
 ## Step 4 — Export verified data and Evaluate
 
 New terminal (venv active)
+
 Manual Export
 1. Click export button
 2. Choose YOLO and images
