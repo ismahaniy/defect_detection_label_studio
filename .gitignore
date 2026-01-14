@@ -19,6 +19,10 @@ __pycache__/
 *.pt
 *.pth
 
+# Ignore deep weight files
+project_root/**/weights/
+**/candidates/**
+
 # ...BUT explicitly save YOUR specific model
 !best.pt
 !label-studio-ml-backend/my_ml_backend/best.pt

@@ -1,0 +1,8 @@
+names:
+- dentado
+- concave
+- perforation
+nc: 3
+path: C:\Users\User10\OneDrive\Documents\AI\SEM2 Y3\FYP\anylabeling_gpu\yolo_dataset_defect_detection
+train: images/train
+val: C:\Users\User10\OneDrive\Documents\AI\SEM2 Y3\FYP\anylabeling_gpu\ground_truth_subset\images

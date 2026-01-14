@@ -1,0 +1,21 @@
+{
+  "categories": [
+    {
+      "id": 0,
+      "name": "concave"
+    },
+    {
+      "id": 1,
+      "name": "dentado"
+    },
+    {
+      "id": 2,
+      "name": "perforation"
+    }
+  ],
+  "info": {
+    "year": 2026,
+    "version": "1.0",
+    "contributor": "Label Studio"
+  }
+}

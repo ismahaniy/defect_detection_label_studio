@@ -1,0 +1,8 @@
+path: C:/Users/User10/OneDrive/Documents/AI/SEM2 Y3/FYP/defect_detection/label-studio-ml-backend/project_root/exports/yolo_export_20260110_005707
+train: images
+val: images
+nc: 3
+names:
+- dentado
+- concave
+- perforation
