@@ -26,6 +26,8 @@ This system is designed for defect detection tasks and supports human-in-the-loo
 
 ## Step 1 — Install & Create Environment
 
+Open Terminal / PowerShell
+
 Install dependencies:
 
 ```bash
