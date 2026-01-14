@@ -124,7 +124,7 @@ python pipeline/run_pipeline.py
 ## Evaluation & Decision Rules
 
 - Metric: **mAP50**
-- Retraining triggers:
+- Fine-tune triggers:
   - `mAP50 < 0.60`
   - `ΔmAP50 < -0.03`
 - Deployment trigger:
@@ -132,5 +132,5 @@ python pipeline/run_pipeline.py
 
 ---
 
-I am not suggest to proceed fine-tuning because it will take long time without GPU.
+I am not suggest to proceed fine-tuning because it will take long time without GPU also the trainning data not include in the repository.
 
