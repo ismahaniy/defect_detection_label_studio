@@ -83,7 +83,7 @@ pip install -r my_ml_backend/requirements.txt
 Warnings: will get an error when install requirements-base.txt but can ignore it and proceed
 
 1. Connecting model in Label Studio project: Settings > Model > Add Model and provide with the following URL: http://localhost:9090
-2. Labeling Interface and copy this code 
+2. Open Labeling Interface and paste this code 
 ```
 <View>
   <Image name="image" value="$image"/>
