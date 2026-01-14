@@ -1,84 +1,26 @@
-# Automated Human-in-the-Loop Continual Learning System
-YOLOv8 + Label Studio ML Backend
+# Automated Annotation System using Label Studio + YOLO ML Backend
 
-This repository implements a **performance-aware continual learning pipeline** for object/defect detection using **YOLOv8** and **Label Studio**.
+This project provides an automated image annotation system using:
 
-The system:
-- Uses **human-verified annotations** as ground truth
-- Evaluates models using **mAP50**
-- Triggers **incremental fine-tuning only when performance degrades**
-- Automatically **compares and deploys improved models**
-- Prevents **evaluation leakage** and **catastrophic forgetting**
+- Label Studio as the annotation interface
+- Label Studio ML Backend for auto-labeling using a YOLO model
 
----
+Workflow:
+1. User uploads images via Label Studio
+2. YOLO model auto-generates bounding boxes
+3. User reviews, edits, and verifies annotations
+4. Verified annotations can be exported in YOLO format
+5. Export YOLO annotations
 
-## System Workflow
-
-```
-Label Studio (Human Verification)
-        ↓
-Export YOLO Annotations (Snapshot)
-        ↓
-Rebuild YOLO Dataset (Images + Labels)
-        ↓
-Evaluate Model (mAP50)
-        ↓
-Decision Logic
-        ↓
-(Optional) Incremental Fine-tuning
-        ↓
-Re-evaluate & Compare Models
-        ↓
-Deploy Best Model to Label Studio
-```
-
----
-
-## Project Structure
-
-```
-project_root/
-├── pipeline/
-│   └── run_pipeline.py
-│
-├── ls_export/
-│   ├── export_yolo.py
-│   ├── rebuild_yolo_dataset.py
-│   └── create_yaml.py
-│
-├── finetune/
-│   └── build_fine_tune_dataset.py
-│
-├── models/
-│   ├── deployed/
-│   │   └── best.pt
-│   ├── candidates/
-│   │   └── best_ft.pt
-│   └── archive/
-│
-├── original_training_data/
-│   ├── images/
-│   └── labels/
-│
-├── exports/
-│   └── yolo_export_xxx/
-│
-├── history/
-│   ├── eval_history.csv
-│   └── last_eval_export.txt
-│
-└── README.md
-```
+This system is designed for defect detection tasks and supports human-in-the-loop annotation.
 
 ---
 
 ## Requirements
 
 - Python 3.9+
-- Conda or virtualenv
+- Conda environment
 - YOLOv8 (Ultralytics)
-- Label Studio
-- Label Studio ML Backend
 
 ---
 
@@ -93,8 +35,8 @@ Install dependencies:
 
 ```bash
 git clone https://github.com/ismahaniy/defect_detection_label_studio.git
-cd defect_detection_label_studio/label-studio-ml-backend
-pip install -e .
+cd defect_detection_label_studio
+pip install label-studio
 ```
 
 ---
@@ -133,7 +75,8 @@ Paste the API key into:
  Open new terminal
  ```bash
 cd defect_detection_label_studio/label-studio-ml-backend
-pip install -r my_ml_backend
+pip install -r my_ml_backend/requirements-base.txt
+pip install -r my_ml_backend/requirements.txt
 label-studio-ml start .\my_ml_backend
 ```
 
@@ -150,68 +93,32 @@ label-studio-ml start .\my_ml_backend
 </View>
 
 ```
-
-Ensure your `model.py` loads only the deployed model:
-
-```python
-self.model = YOLO("models/deployed/best.pt")
-```
-
 1. Upload images
 2. Configure bounding box labeling
 3. Start annotating / correcting predictions
 ---
-
-## Step 5 — Initial Model Setup
-
-Place your initial YOLO model here:
-
-```
-models/deployed/best.pt
-```
-
-This model is used for:
-- Auto-labeling
-- Baseline evaluation
-
----
-
-## Step 6 — First Pipeline Run (Baseline)
-
-```bash
+## Step 4 — Export verified data and Evaluate
+Manual Export
+1. Click export button
+2. Choose YOLO and images
+3. Export
+4. Extract folder and copy folder path
+5. Run pipeline
+ ```bash
+cd defect_detection_label_studio/label-studio-ml-backend/project_root
 python pipeline/run_pipeline.py
 ```
+6. Choose 2 and paste folder path
+7. Evaluate
 
-What happens:
-- Exports human-verified annotations
-- Rebuilds YOLO dataset
-- Evaluates mAP50
-- Saves baseline performance
-- **No fine-tuning occurs**
-
-This establishes the reference performance.
-
----
-
-## Step 7 — Continual Learning Runs
-
-After **more human annotations** are added in Label Studio:
-
-```bash
+Auto Export
+1. Run pipeline
+ ```bash
+cd defect_detection_label_studio/label-studio-ml-backend/project_root
 python pipeline/run_pipeline.py
 ```
-
-The pipeline will:
-1. Export updated annotations
-2. Evaluate current deployed model
-3. Detect performance degradation
-4. Fine-tune using:
-   - Previously verified data
-   - Historical training data (replay)
-5. Compare fine-tuned model vs deployed model
-6. Deploy only if performance improves
-
----
+2. Choose 1, copy folder path of uploaded image and paste folder path
+3. Evaluate
 
 ## Evaluation & Decision Rules
 
@@ -224,37 +131,5 @@ The pipeline will:
 
 ---
 
-## Key Design Principles
+I am not suggest to proceed fine-tuning because it will take long time without GPU.
 
-### Ground Truth
-- Exported Label Studio data acts as **human-verified ground truth**
-- Used **only for evaluation**
-
-### Temporal Separation
-- Evaluation data is **never used for training in the same cycle**
-- Training uses **previously evaluated data only**
-
-### Fine-Tuning Strategy
-- Incremental (not from scratch)
-- Low learning rate
-- Few epochs
-- 70% verified data + 30% replay data
-
----
-
-## Model Deployment
-
-When a fine-tuned model outperforms the deployed model:
-- It is automatically promoted to:
-  ```
-  models/deployed/best.pt
-  ```
-- Restart ML backend:
-
-```bash
-label-studio-ml start my_ml_backend
-```
-
-Label Studio will now auto-label using the improved model.
-
----
