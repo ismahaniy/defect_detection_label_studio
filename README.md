@@ -60,22 +60,10 @@ http://127.0.0.1:8080 / http://localhost:8080
 ### Create a Project
 1. Sign up / Log in
 2. Create a new project
-   
----
-
-## Step 3 — Get Label Studio API Key
-Ensure to enable Legacy Tokens to get API Key(Label Studio -> Organization -> API Key Settings)
-1. Click **Avatar (top-right)**
-2. Open **Account & Settings**
-3. Copy **API Key/Legacy Token**
-
-Paste the API key into:
-- `project_root/ls_export/export_yolo.py`
-- `project_root/ls_export/rebuild_yolo_dataset.py`
 
 ---
 
-## Step 4 — Start Label Studio ML Backend
+## Step 3 — Start Label Studio ML Backend
  Open new terminal(ensure your venv active)
  ```bash
 cd defect_detection_label_studio/label-studio-ml-backend
@@ -125,6 +113,18 @@ python pipeline/run_pipeline.py
 7. Evaluate
 
 Auto Export
+For auto export from label studio, you need to set-up the API Key
+Get Label Studio API Key
+Ensure to enable Legacy Tokens to get API Key(Label Studio -> Organization -> API Key Settings)
+1. Click **Avatar (top-right)**
+2. Open **Account & Settings**
+3. Access Token
+4. Copy **API Key/Legacy Token**
+
+Paste the API key into:
+- `project_root/ls_export/export_yolo.py`
+- `project_root/ls_export/rebuild_yolo_dataset.py`
+
 1. Run pipeline
  ```bash
 cd defect_detection_label_studio/label-studio-ml-backend/project_root
@@ -132,6 +132,10 @@ python pipeline/run_pipeline.py
 ```
 2. Choose 1, copy folder path of uploaded image and paste folder path
 3. Evaluate
+
+```
+
+I do not recommend proceeding with fine-tuning because it will take a long time without the GPU, and the training data is not included in the repository.
 
 ## Evaluation & Decision Rules
 
@@ -143,6 +147,4 @@ python pipeline/run_pipeline.py
   - `mAP50_new > mAP50_old + 0.02`
 
 ---
-
-I do not recommend proceeding with fine-tuning because it will take a long time without the GPU, and the training data is not included in the repository.
 
