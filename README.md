@@ -84,14 +84,15 @@ Warnings: You may receive an error when installing requirements-base.txt (incomp
     <Label value="perforation" background="#FFC069"/>
   </RectangleLabels>
 </View>
-
 ```
 - Ensure Project > Settings > Model is connected
 
 Start Label Image
-1. Upload images
-2. Configure bounding box labeling
-3. Start annotating / correcting predictions
+1. Go to project
+2. Upload images
+3. Configure bounding box labeling
+4. Start annotating / correcting predictions
+
 ---
 ## Step 4 — Export verified data and Evaluate
 
