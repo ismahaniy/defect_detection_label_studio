@@ -69,6 +69,7 @@ http://127.0.0.1:8080 / http://localhost:8080
 cd defect_detection_label_studio/label-studio-ml-backend
 pip install -r my_ml_backend/requirements-base.txt
 pip install -r my_ml_backend/requirements.txt
+label-studio-ml start .\my_ml_backend
 ```
 Warnings: You may receive an error when installing requirements-base.txt (incompatible cause), but you may ignore it and proceed.
 
@@ -84,9 +85,6 @@ Warnings: You may receive an error when installing requirements-base.txt (incomp
   </RectangleLabels>
 </View>
 
-```
-```bash
-label-studio-ml start .\my_ml_backend
 ```
 - Ensure Project > Settings > Model is connected
 
