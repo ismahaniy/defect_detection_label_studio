@@ -99,7 +99,7 @@ Start Label Image
 
 New terminal (venv active)
 
-Manual Export(Preffered)
+Manual Export(Preferred)
 1. Click export button
 2. Choose YOLO and images
 3. Export
