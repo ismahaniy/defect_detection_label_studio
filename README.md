@@ -99,7 +99,7 @@ Start Label Image
 
 New terminal (venv active)
 
-Manual Export(Preferred)
+### Manual Export(Preferred)
 1. Click export button
 2. Choose YOLO and images
 3. Export
@@ -112,9 +112,10 @@ python pipeline/run_pipeline.py
 6. Choose 2 and paste folder path
 7. Evaluate
 
-Auto Export
+### Auto Export
 
 For auto export from label studio, you need to set-up the API Key
+
 Get Label Studio API Key
 Ensure to enable Legacy Tokens to get API Key(Label Studio -> Organization -> API Key Settings)
 1. Click **Avatar (top-right)**
@@ -126,6 +127,8 @@ Paste the API key into:
 - `project_root/ls_export/export_yolo.py`
 - `project_root/ls_export/rebuild_yolo_dataset.py`
 
+Run pipeline for auto export
+
 1. Run pipeline
  ```bash
 cd defect_detection_label_studio/label-studio-ml-backend/project_root
@@ -134,7 +137,6 @@ python pipeline/run_pipeline.py
 2. Choose 1, copy folder path of uploaded image and paste folder path
 3. Evaluate
 
-```
 
 I do not recommend proceeding with fine-tuning because it will take a long time without the GPU, and the training data is not included in the repository.
 
