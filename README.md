@@ -93,6 +93,13 @@ Start Label Image
 3. Configure bounding box labeling
 4. Start annotating / correcting predictions
 
+### Description of class defect:
+dentado :  Corroded areas, rust stains, or rusted dents
+
+perforation :  Holes, punctures, or breaches in the wall
+
+concave :  Large dents , structural inward bending or side/surface deformation
+
 ---
 ## Step 4 — Export verified data and Evaluate
 
