@@ -1,7 +1,6 @@
 # Automated Annotation System using Label Studio ML Backend
 
-An automated annotation pipeline based on the Vision–Language Model Grounding DINO was utilized to generate bounding box labels. These labels were transformed into YOLO format and used to train the YOLO object detection model.
-VLM auto-labeling pipeline:
+An automated annotation pipeline based on the Vision–Language Model Grounding DINO was utilized to generate bounding box labels. These labels were transformed into YOLO format and used to train the YOLO object detection model. The trained YOLO model then deploy in label studio ML backend for human verification and evaluation.
 
 
 This project provides an automated image annotation system using:
