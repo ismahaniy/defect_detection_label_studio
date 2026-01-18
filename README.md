@@ -2,7 +2,7 @@
 
 An automated annotation pipeline based on the Vision–Language Model Grounding DINO was utilized to generate bounding box labels. These labels were transformed into YOLO format and used to train the YOLO object detection model.
 VLM auto-labeling pipeline:
-https://colab.research.google.com/drive/1UoONSPP32WpgbMuy8A3Mimb1U9XkHWWf?usp=sharing
+
 
 This project provides an automated image annotation system using:
 
